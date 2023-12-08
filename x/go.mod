@@ -1,4 +1,4 @@
-module github.com/Jigsaw-Code/outline-sdk/x
+module github.com/kernusr/outline-sdk/x
 
 go 1.20
 
