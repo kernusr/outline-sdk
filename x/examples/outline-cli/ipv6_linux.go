@@ -40,10 +40,14 @@ func enableIPv6(enabled bool) (bool, error) {
 	} else {
 		disabledStr[0] = '1'
 	}
-	if err := os.WriteFile(disableIPv6ProcFile, disabledStr, 0644); err != nil {
-		return prevEnabled, fmt.Errorf("failed to write IPv6 config: %w", err)
+
+	if prevEnabled != enabled {
+		if err := os.WriteFile(disableIPv6ProcFile, disabledStr, 0644); err != nil {
+			return prevEnabled, fmt.Errorf("failed to write IPv6 config: %w", err)
+		}
 	}
 
+	
 	logging.Info.Printf("updated global IPv6 support: %v\n", enabled)
 	return prevEnabled, nil
 }
